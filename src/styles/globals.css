@@ -1,0 +1,257 @@
+@import "tailwindcss";
+
+:root {
+  --jungle-green: #183d2b;
+  --warm-sand: #f5f0e5;
+  --earth-coral: #e97848;
+  --golden-yellow: #d5b46a;
+  --leaf-sage: #dce5d5;
+  --background: var(--warm-sand);
+  --foreground: var(--jungle-green);
+}
+
+@theme inline {
+  --color-jungle: var(--jungle-green);
+  --color-sand: var(--warm-sand);
+  --color-coral: var(--earth-coral);
+  --color-gold: var(--golden-yellow);
+  --color-sage: var(--leaf-sage);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-display: var(--font-playfair);
+  --font-sans: var(--font-dm-sans);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--warm-sand);
+  color: var(--jungle-green);
+  font-family: var(--font-dm-sans), ui-sans-serif, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-playfair), ui-serif, Georgia, serif;
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--golden-yellow) 55%, white);
+  color: var(--jungle-green);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-zoom {
+  from {
+    transform: scale(1.04);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease-out both;
+}
+
+.animate-fade-up-delay {
+  animation: fade-up 0.8s ease-out 0.15s both;
+}
+
+.animate-hero-media {
+  animation: soft-zoom 8s ease-out both;
+}
+
+@keyframes story-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes story-photo-drift {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.story-card {
+  animation: story-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.story-photo {
+  animation: story-photo-drift 7s ease-out both;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .story-photo {
+  transform: scale(1.05);
+  animation: none;
+}
+
+@keyframes event-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes event-photo-glow {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes event-spark {
+  0%,
+  100% {
+    opacity: 0.15;
+    background-position: 0% 50%;
+  }
+  50% {
+    opacity: 0.45;
+    background-position: 100% 50%;
+  }
+}
+
+.event-card {
+  animation: event-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px color-mix(in srgb, var(--jungle-green) 18%, transparent);
+}
+
+.event-photo {
+  animation: event-photo-glow 8s ease-out both;
+  transition: transform 0.9s ease;
+}
+
+.event-card:hover .event-photo {
+  transform: scale(1.06);
+  animation: none;
+}
+
+.event-spark {
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    color-mix(in srgb, var(--golden-yellow) 22%, transparent) 50%,
+    transparent 70%
+  );
+  background-size: 200% 200%;
+  animation: event-spark 4.5s ease-in-out infinite;
+}
+
+.nav-btn {
+  position: relative;
+  overflow: hidden;
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.nav-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateY(105%);
+  transition: transform 0.35s ease;
+  z-index: 0;
+}
+
+.nav-btn > span {
+  position: relative;
+  z-index: 1;
+}
+
+.nav-btn:hover {
+  transform: translateY(-1px);
+}
+
+.nav-btn:hover::before,
+.nav-btn[data-active="true"]::before {
+  transform: translateY(0);
+}
+
+.nav-btn-home::before {
+  background: var(--warm-sand);
+}
+
+.nav-btn-home:hover,
+.nav-btn-home[data-active="true"] {
+  color: var(--jungle-green);
+  border-color: var(--warm-sand);
+}
+
+.nav-btn-page::before {
+  background: var(--jungle-green);
+}
+
+.nav-btn-page:hover,
+.nav-btn-page[data-active="true"] {
+  color: var(--warm-sand);
+  border-color: var(--jungle-green);
+}
+
+.demo-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--jungle-green) 70%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--jungle-green) 25%, transparent);
+  padding-bottom: 0.1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-up-delay,
+  .animate-hero-media,
+  .story-card,
+  .story-photo,
+  .event-card,
+  .event-photo,
+  .event-spark {
+    animation: none !important;
+  }
+
+  .nav-btn:hover,
+  .group:hover .story-photo,
+  .event-card:hover,
+  .event-card:hover .event-photo {
+    transform: none;
+  }
+}
