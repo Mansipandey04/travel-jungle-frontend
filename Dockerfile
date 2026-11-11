@@ -18,7 +18,7 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 # Server-only; never expose to the browser
-ENV BACKEND_INTERNAL_URL=https://api.travlejungle.com
+ENV BACKEND_INTERNAL_URL=http://backend:8000
 
 RUN addgroup -S nodejs && adduser -S nextjs -G nodejs
 
