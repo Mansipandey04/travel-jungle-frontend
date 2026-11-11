@@ -60,7 +60,7 @@ async function proxy(req: NextRequest, pathParts: string[]) {
       {
         error: "backend_unreachable",
         message:
-          "Backend proxy stub could not reach BACKEND_INTERNAL_URL. Expected in Docker as http://backend:8000.",
+         `Backend proxy stub could not reach BACKEND_INTERNAL_URL. Expected in Docker as ${target}.`,
       },
       { status: 502 },
     );
